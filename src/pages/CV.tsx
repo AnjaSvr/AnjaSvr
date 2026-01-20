@@ -28,6 +28,8 @@ const CV = () => {
                 <div className="border-l-4 border-muted pl-6">
                   <h3 className="text-xl font-semibold text-foreground">Master of Science, Mathematics </h3>
                   <p className="text-muted-foreground">Technical University of Munich, 2019-2022</p>
+                  <p className="text-foreground mt-2">Topic : Invertible Topological Field Theories and Stable Homotopy Theory</p>
+                  <p className="text-foreground mt-2">Supervisor: Prof. Dr. Claudia Scheimbauer</p>
                 </div>
                 <div className="border-l-4 border-muted pl-6">
                   <h3 className="text-xl font-semibold text-foreground">Bachelor’s Degree in Pure Mathematics and Applications </h3>

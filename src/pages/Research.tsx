@@ -2,26 +2,55 @@ import { BookOpen } from "lucide-react";
 import Header from "@/components/Header";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
+interface Author {
+  name: string;
+  link?: string; // optional, in case some authors don't have a webpage
+}
+
 interface Publication {
   title: string;
-  authors: string;
+  authors: Author[];
   link: string;
   year: string;
-
+  abstract?: string;
+  figure?: string;
+  keywords?: string;
 }
 
 const publications: Publication[] = [
   {
     title: "Additivity of Constructible Factorization Algebras over Manifolds with Corners ",
-    authors: "Victor Carmona, Anja Švraka",
+    authors: [
+      { name: "Victor Carmona", link: "https://personal.us.es/vcarmona1/" },
+      { name: "Anja Švraka"}
+    ],
     link: "https://arxiv.org/abs/2510.26504",
     year: "2025",
+    abstract: "We prove the statement in the title, solving in this way a conjecture stated by Ginot for manifolds with corners. Along the way, we establish a derived Swiss-cheese additivity theorem and an alternative proof for the hyperdescent of factorization algebras over those manifolds.",
+    figure: "src/assets/figures/factorization-diagram.png",
+    keywords: "factorization algebras, Swiss-cheese operads, homotopical algebra, derived Dunn additivity, manifolds with corners",
   },
   {
     title: "Simons Lectures on Categorical Symmetries ",
-    authors: "notes for David Jordan’s lecture: IV. Applied Cobordism Hypothesis, with Jonte Gödicke and Aaron Hofer",
+    authors: [
+      { name: "Davi Costa", link: "https://physics.uchicago.edu/people/profile/clay-cordova/" },
+      { name: "Michele Del Zotto" , link: "https://www.uu.se/en/contact-and-organisation/staff?query=N20-103"},
+      { name: "Dan Freed", link:"https://people.math.harvard.edu/~dafr/" },
+      { name: "Jonte Gödicke", link: "https://jonte-goedicke.com/" },
+      { name: "Aaron Hofer", link: "https://aaron-hofer.github.io/" },
+      { name: "David Jordan", link: "https://webhomes.maths.ed.ac.uk/~djordan/"},
+      { name: "Davide Morgante", link: "https://davidemorgante.github.io/"},
+      { name: "Robert Moscrop",link: "https://cmsa.fas.harvard.edu/ss_people/robert-moscrop/"},
+      { name: "Kantaro Ohmori", link: "https://ithems.riken.jp/en/members/kantaro-omori"},
+      { name: "Elias Riedel Gårding", link: "https://www.uu.se/en/contact-and-organisation/staff?query=N20-1173"},
+      { name: "Claudia Scheimbauer", link: "http://www.scheimbauer.at/"},
+       { name: "Anja Švraka"},
+    ],
     link: " https://arxiv.org/abs/2411.09082",
     year: "2024",
+    abstract: "I helped write notes for David Jordan’s lecture: IV. Applied Cobordism Hypothesis, with Jonte Gödicke and Aaron Hofer.",
+    figure: "src/assets/figures/symmetries-figure.png",
+    keywords: "symmetries in quantum field theory, anomalies, symmetry categories, cobordism hypothesis, finite symmetry in QFT"
   },
 ];
 
@@ -59,10 +88,58 @@ const Research = () => {
                     <CardHeader>
                       <CardTitle className="text-xl">{pub.title}</CardTitle>
                       <CardDescription className="text-base">
-                        {pub.authors}
+                         {pub.authors.map((author, i) => (
+                            <span key={i}>
+                              {author.link ? (
+                                <a 
+                                  href={author.link} 
+                                  target="_blank" 
+                                  rel="noopener noreferrer" 
+                                  className="text-primary underline hover:text-primary/80"
+                                >
+                                  {author.name}
+                                </a>
+                              ) : (
+                                author.name
+                              )}
+                              {i < pub.authors.length - 1 ? ", " : ""}
+                            </span>
+                          ))}
                       </CardDescription>
                     </CardHeader>
                      <CardContent>
+                       <div className="flex flex-col md:flex-row gap-4">
+                        {/* Abstract Column */}
+                        <div className="md:w-2/3">
+                          <p className="font-semibold text-foreground uppercase" style={{ fontVariant: "small-caps" }}>Abstract</p>
+                          <p className="text-muted-foreground">{pub.abstract}</p>
+
+                          {pub.keywords && (
+                            <p className="mt-3 text-muted-foreground">
+                              <span
+                                className="font-semibold text-foreground uppercase"
+                                style={{ fontVariant: "small-caps" }}
+                              >
+                                Keywords:
+                              </span>{" "}
+                              {pub.keywords}
+                            </p>
+                          )}
+                        </div>
+
+                        {/* Figure Column */}
+                        {pub.figure && (
+                          <div className="md:w-1/3 flex justify-center items-start">
+                            <img 
+                              src={pub.figure} 
+                              alt={`${pub.title} figure`} 
+                              className="rounded border border-border shadow-sm max-h-64 object-contain"
+                            />
+                          </div>
+                        )}
+                      </div>
+
+
                         <p className="text-muted-foreground italic">
                        Available at:{" "}
                       <a 

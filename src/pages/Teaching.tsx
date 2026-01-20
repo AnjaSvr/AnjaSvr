@@ -50,8 +50,6 @@ const Teaching = () => {
           </div>
 
           <div className="space-y-8">
-          
-
             <section>
               <h2 className="text-2xl font-bold text-foreground mb-6">Courses</h2>
               <div className="space-y-4">

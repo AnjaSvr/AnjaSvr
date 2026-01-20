@@ -24,7 +24,7 @@ const About = () => {
         </p>
           
         <p className="text-lg text-foreground leading-relaxed mb-8">
-          Currently, I am supported SFB 1085: Higher Invariants from the Deutsche Forschungsgemeinschaft (DFG).
+          Currently, I am supported by SFB 1085: Higher Invariants from the Deutsche Forschungsgemeinschaft (DFG).
         </p>
       </div>
     </section>
